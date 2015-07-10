@@ -116,7 +116,7 @@ vows.describe('nconf/stores/redis').addBatch({
       },
       "should actually remove the value from Redis": function (err, value) {
         assert.isNull(err);
-        assert.isNull(value);
+        assert.isUndefined(value);
       }
     }
   }
@@ -232,8 +232,8 @@ vows.describe('nconf/stores/redis').addBatch({
       },
       "should remove all keys from redis": function (err, value) {
         assert.isNull(err);
-        assert.isNull(value);
-        assert.length(Object.keys(this.store.cache.store), 0);
+        assert.isUndefined(value);
+        assert.lengthOf(Object.keys(this.store.cache.store), 0);
       }
     }
   }
