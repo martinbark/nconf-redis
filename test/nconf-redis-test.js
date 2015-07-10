@@ -46,7 +46,23 @@ vows.describe('nconf/stores/redis').addBatch({
             },
             "with null": {
                 topic: function(store) {
-                    store.set('falsy:object', null, this.callback);
+                    store.set('foo:null', null, this.callback);
+                },
+                "should respond without an error": function(err, ok) {
+                    assert.isNull(err);
+                }
+            },
+            "with bool true": {
+                topic: function(store) {
+                    store.set('foo:bool:true', true, this.callback);
+                },
+                "should respond without an error": function(err, ok) {
+                    assert.isNull(err);
+                }
+            },
+            "with bool false": {
+                topic: function(store) {
+                    store.set('foo:bool:false', false, this.callback);
                 },
                 "should respond without an error": function(err, ok) {
                     assert.isNull(err);
@@ -92,10 +108,34 @@ vows.describe('nconf/stores/redis').addBatch({
             },
             "with null": {
                 topic: function(store) {
-                    store.get('falsy:object', this.callback);
+                    store.get('foo:null', this.callback);
                 },
                 "should respond with the correct value": function(err, value) {
                     assert.equal(value, null);
+                }
+            },
+            "with bool true": {
+                topic: function(store) {
+                    store.get('foo:bool:true', this.callback);
+                },
+                "should respond with the correct value": function(err, value) {
+                    assert.equal(value, true);
+                }
+            },
+            "with bool false": {
+                topic: function(store) {
+                    store.get('foo:bool:false', this.callback);
+                },
+                "should respond with the correct value": function(err, value) {
+                    assert.equal(value, false);
+                }
+            },
+            "with non existent key": {
+                topic: function(store) {
+                    store.get('foo:does:not:exist', this.callback);
+                },
+                "should respond with the correct value": function(err, value) {
+                    assert.isUndefined(value);
                 }
             }
         }
