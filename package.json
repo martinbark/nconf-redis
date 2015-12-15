@@ -9,11 +9,11 @@
   },
   "keywords": ["configuration", "key value store", "nconf", "redis"],
   "dependencies": {
-    "async": "1.2.x",
-    "redis": "0.12.x"
+    "async": "1.5.x",
+    "redis": "2.4.x"
   },
   "devDependencies": {
-    "nconf": "0.7.x",
+    "nconf": "0.8.x",
     "vows": "0.8.x"
   },
   "license": "MIT",
